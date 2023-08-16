@@ -5,16 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\alumnos;
 use App\Models\clases;
-
-
-class clases_alumnos extends Controller
+use App\Models\clases_alumnos;
+use Barryvdh\DomPDF\Facade\Pdf;
+class clases_alumnosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('clases_alumnos');
+        $claseAlumnos=clases_alumnos::all();
+        $alumnos=alumnos::all();
+        $clases=clases::all();
+        
+
+        return view('clases_alumnos', compact('alumnos', 'clases', 'claseAlumnos'));
+    }
+
+    public function pdf(){
+        $claseAlumnos=clases_alumnos::all();
+        $pdf = Pdf::loadView('alumnospdf',compact('claseAlumnos'));
+        return $pdf->stream();
     }
 
     /**
@@ -30,7 +41,18 @@ class clases_alumnos extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_alumno'=>'required',
+            'id_clase'=>'required',
+            
+        ]);
+
+        $claseAlumnos=new clases_alumnos();
+        $claseAlumnos->id_alumno=$request->input('id_alumno');
+        $claseAlumnos->id_clase=$request->input('id_clase');
+        $claseAlumnos->save();
+        
+        return redirect('/clases_alumnos')->with('status', 'Alumno añadido');
     }
 
     /**

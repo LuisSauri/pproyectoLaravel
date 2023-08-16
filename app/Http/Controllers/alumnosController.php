@@ -63,10 +63,9 @@ class alumnosController extends Controller
      */
     public function show($id)
     {
-        $alumnoHA = historial_acad::all();
         $alumno= alumnos::find($id);
 
-        return view('alumnosShow', ['alumno'=>$alumno, alumnos::all()], compact('alumnoHA'),('alumnos'));
+        return view('alumnosShow', ['alumno'=>$alumno, alumnos::all()]);
 
     }
 

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             
-            $table->bigInteger('id_horario')->unsigned();
-            $table->foreign('id_horario')->references('id')->on('horarios');
+            $table->enum('dia',['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes']);
+            $table->enum('hora',['14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00']);
             
 
 

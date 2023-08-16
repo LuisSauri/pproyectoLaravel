@@ -38,24 +38,29 @@
                     <input type="text" class="form-control" name="nombre" required placeholder="">
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Maestro</label>
-                    <input type="text" class="form-control" name="maestro" required placeholder="">
+                    <label for="formGroupExampleInput2" class="form-label">Día</label>
+                    <select class="form-select" aria-label="Default select example" name="dia">
+                        <option selected disabled>--Selecciona la hora--</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                      </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Alumnos</label>
-                    <input type="text" class="form-control" name="alumnos" required placeholder="">
-                </div>
-
-
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Instrumentos</label>
-                    <input type="integer" class="form-control" name="instrumentos">
-                </div>
-
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Horario</label>
-                    <input type="text" class="form-control" name="horario">
+                    <label for="formGroupExampleInput2" class="form-label">Hora</label>
+                    <select class="form-select" aria-label="Default select example" name="hora">
+                        <option selected disabled>--Selecciona la hora--</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                      </select>
                 </div>
 
             </div>
@@ -84,12 +89,12 @@
                     </div>
                <div>
                 
-                <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
+                <button title="Buscar" type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
             </form>
              </div>
              <!-- Boton agregar (modal) -->
              <div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus"></i></button>
+                <button title="Agregar Clase" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus"></i></button>
             </div>
              </div>
     
@@ -106,9 +111,11 @@
                   <tr>
                     <th scope="col" class="text-center">ID</th>
                     <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center">Horario</th>
+                    <th scope="col" class="text-center">Día</th>
+                    <th scope="col" class="text-center">Hora</th>
                     <th scope="col" class="text-center"></th>
                     <th scope="col" class="text-center"></th>
+
                   </tr>
                 </thead>
 
@@ -118,15 +125,16 @@
                         @foreach ($listClases as $clase)
                         <td class="text-center">{{$clase->id}} </td>
                         <td class="text-center">{{$clase->nombre}} </td>
-                        <td class="text-center">{{$clase->id_horario}} </td>
+                        <td class="text-center">{{$clase->dia}} </td>
+                        <td class="text-center">{{$clase->hora}} </td>
                         <td class="text-center">
-                            <a href="{{url('clases/'.$clase->id.'/editViews.clasesEdit')}}" class="btn btn small btn-warning"><i class="bi bi-pen-fill"></i></a>
+                            <a title="Actualizar" href="{{url('clases/'.$clase->id.'/clasesEdit')}}" class="btn btn small btn-warning"><i class="bi bi-pen-fill"></i></a>
 
                         </td>
                             
                         <td>   
                                 <form action="{{url('clases' .$clase->id)}}" method="POST"> 
-                                    <button class="btn btn small btn-danger" onclick="return confirm('{{ __('Apoco si?') }}')">
+                                    <button title="Eliminar" class="btn btn small btn-danger" onclick="return confirm('{{ __('Apoco si?') }}')">
                                         {{ __() }}<i class="bi bi-trash-fill"></i></button>                                   @method('DELETE')
                                    @csrf
                                </form>

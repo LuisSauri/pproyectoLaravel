@@ -11,8 +11,14 @@
 
 @section('lista', 'Lista de Alumnos')
 
-
-
+@if ($errors -> any())
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 
     <form action="{{url('alumnos')}}" method="POST">
         @csrf
@@ -55,6 +61,7 @@
                     <label for="formGroupExampleInput2" class="form-label">Foto</label>
                     <input type="file" name="foto" class="form-control" />
                 </div>
+               
 
             </div>
         <div class="modal-footer">
@@ -83,16 +90,13 @@
                     </div>
                <div>
                 
-                <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
+                <button title="Buscar" type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
+                <button title="Añadir Alumno" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus"></i></button>
+                <a title="Asignar Clase" href="{{url('clases_alumnos')}}" class="btn btn small btn-success"><i class="bi bi-music-note-list"></i></i></i></a>                            
+
             </form>
              </div>
-             <!-- Boton agregar (modal) -->
-             <div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus"></i></button>
-            </div>
-             </div>
-    
-           </div>
+
     </div>       
 
 <div class="container-flud px-4 px-lg-5">
@@ -125,16 +129,16 @@
                         <td class="text-center">{{$alumno->fec_nac}}</td>
                         <td class="text-center">{{$alumno->telefono}} </td>
                         <td class="">
-                            <a href="{{url('alumnos/'.$alumno->id.'/alumnosShow')}}" class="btn btn small btn-success"><i class="bi bi-person-vcard"></i></i></a>                            
+                            <a title="Ver detalle de alumno" href="{{url('alumnos/'.$alumno->id.'/alumnosShow')}}" class="btn btn small btn-info"><i class="bi bi-person-vcard"></i></i></a>                            
                         </td>
 
                         <td class="">
-                            <a href="{{url('alumnos/'.$alumno->id.'/editViews.alumnosEdit')}}" class="btn btn small btn-warning"><i class="bi bi-pen-fill"></i></a>                            
+                            <a title="Actualizar" href="{{url('alumnos/'.$alumno->id.'/alumnosEdit')}}" class="btn btn small btn-warning"><i class="bi bi-pen-fill"></i></a>                            
                         </td>
                             
                         <td>   
                                 <form action="{{url('alumnos' .$alumno->id)}}" method="POST"> 
-                                    <button class="btn btn small btn-danger" onclick="return confirm('{{ __('Apoco si?') }}')">
+                                    <button title="Eliminar" class="btn btn small btn-danger" onclick="return confirm('{{ __('Apoco si?') }}')">
                                         {{ __() }}<i class="bi bi-trash-fill"></i></button>
                                    @method('DELETE')
                                    @csrf

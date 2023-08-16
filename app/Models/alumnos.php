@@ -9,8 +9,8 @@ class alumnos extends Model
 {
     use HasFactory;
 
-   /* public function clases(){
-        return $this->hasMany('App\Models\clases');
-    }*/
+    public function clases_alumnos(){
+        return $this->hasMany('App\Models\clases_alumnos');
+    }
 
 }

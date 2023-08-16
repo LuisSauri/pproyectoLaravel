@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 
-@section('title', 'Asingar clase')
+@section('title', 'Asingar Maestro')
     
 @section('header')
 
@@ -22,18 +22,18 @@
               
 
         <div class="col-4" >
-            <h4 class="text-center">Asignar Clase a Alumno</h4>
-            <form action="{{url('clases_alumnos')}}" method="POST" enctype="multipart/form-data">                
+            <h4 class="text-center">Asignar Maestro a Clase</h4>
+            <form action="{{url('clases_maestros')}}" method="POST" enctype="multipart/form-data">                
                 @csrf
 
                 <div class="col-3"> </div>
                 
             <div>
                 <label for="formGroupExampleInput" class="form-label">Alumno</label>
-                <select name="id_alumno" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected disabled>--Seleccionar alumno--</option>
-                    @foreach($alumnos as $alumno)
-                    <option value="{{$alumno->id}}"> {{$alumno->nombre.' '.$alumno->apellidoPaterno. ' '.$alumno->apellidoMaterno}} </option>
+                <select name="id_maestro" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected disabled>--Seleccionar Maestro--</option>
+                    @foreach($maestros as $maestro)
+                    <option value="{{$maestro->id}}"> {{$maestro->nombre.' '.$maestro->apellidoPaterno.' '.$maestro->apellidoMaterno}} </option>
                     @endforeach
                 </select>
             </div>
@@ -49,7 +49,7 @@
             </div>
 
             <div class="text-center">
-                <a href="{{url('alumnos')}}" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i></a>
+                <a href="{{url('maestros')}}" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i></a>
                 <button type="submit" class="btn btn-success"><i class="bi bi-person-check-fill"></i></button>
             </div>
             </form>
@@ -72,14 +72,15 @@
                        <div>
                         
                         <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
-                        <a title="Descargar" href="{{url('alumnospdf')}}" class="btn btn-primary"><i class="bi bi-file-earmark-arrow-down"></i></a>
+                        <a title="Descargar" href="{{url('maestrospdf')}}" class="btn btn-primary"><i class="bi bi-file-earmark-arrow-down"></i></a>
+
                     </form>
                      </div>
-
+                     
                 <thead class="table table-dark col-xs">
                   <tr>
                     <th scope="col" class="text-center">ID</th>
-                    <th scope="col" class="text-center">Alumno</th>
+                    <th scope="col" class="text-center">Maestro</th>
                     <th scope="col" class="text-center">Clase</th>
                   </tr>
                 </thead>
@@ -87,9 +88,9 @@
                 <tbody>
                     
                     <tr>
-                       @foreach($claseAlumnos as $item)
+                       @foreach($claseMaestros as $item)
                         <td class="text-center">{{$item->id}}</td>
-                        <td class="text-center">{{$item->alumno->nombre." ".$item->alumno->apellidoPaterno." ".$item->alumno->apellidoMaterno}}</td>
+                        <td class="text-center">{{$item->maestro->nombre.' '.$item->maestro->apellidoPaterno.' '.$item->maestro->apellidoMaterno}}</td>
                         <td class="text-center">{{$item->clase->nombre}}</td>                        
                     </tr>
                     @endforeach

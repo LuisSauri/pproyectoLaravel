@@ -62,12 +62,14 @@
                     </div>
                <div>
                 
-                <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
             </form>
              </div>
              <!-- Boton agregar (modal) -->
              <div>
+                <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus"></i></button>
+                <a title="Asignar Clase" href="{{url('clases_instrumentos')}}" class="btn btn small btn-success"><i class="bi bi-music-note-list"></i></i></i></a>                            
+
             </div>
              </div>
     

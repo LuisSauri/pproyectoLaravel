@@ -17,9 +17,6 @@ return new class extends Migration
             $table->string('apellidoPaterno');
             $table->string('apellidoMaterno');
 
-            $table->bigInteger('id_clase')->unsigned();
-            $table->foreign('id_clase')->references('id')->on('clases');
-
             $table->date('fec_nac');
             $table->bigInteger('telefono');
             $table->string('email');

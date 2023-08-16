@@ -9,10 +9,10 @@ class maestros extends Model
 {
     use HasFactory;
 
-   /* public function clase(){
-        return $this->belongsTo('App\Models\clases');
+    public function clases_maestros(){
+        return $this->hasMany('App\Models\clases_maestros');
 
-    }*/
+    }
 
 
 }

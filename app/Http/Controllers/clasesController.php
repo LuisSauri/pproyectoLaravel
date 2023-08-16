@@ -40,14 +40,17 @@ class clasesController extends Controller
     {
         $request->validate([
             'nombre'=>'required',
-            'maestro'=>'required',
+            'dia'=>'required|in:Lunes,Martes,Miércoles,Jueves,Viernes',
+            'hora'=>'required|in:14:00,15:00,16:00,17:00,18:00,19:00,20:00',
 
             
         ]);
 
         $listClases=new clases();
         $listClases->nombre=$request->input('nombre');
-        $listClases->maestro=$request->input('maestro');
+        $listClases->dia=$request->input('dia');
+        $listClases->hora=$request->input('hora');
+
 
         $listClases->save();
 
@@ -75,22 +78,25 @@ class clasesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nombre'=>'required',
-            'maestro'=>'required',
+            'dia'=>'required|in:Lunes,Martes,Miércoles,Jueves,Viernes',
+            'hora'=>'required|in:14:00,15:00,16:00,17:00,18:00,19:00,20:00',
 
             
         ]);
 
-        $clase= clases::find($id);
+        $clase=clases::find($id);
         $clase->nombre=$request->input('nombre');
-        $clase->maestro=$request->input('maestro');
+        $clase->dia=$request->input('dia');
+        $clase->hora=$request->input('hora');
+
 
         $clase->save();
 
-        return redirect('/clases');   
+        return redirect('/clases');
     }
 
     /**

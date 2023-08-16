@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class instrumentos extends Model
 {
     use HasFactory;
+
+    public function clases_instrumentos(){
+        return $this->hasMany('App\Models\clases_instrumentos');
+    }
+
 }

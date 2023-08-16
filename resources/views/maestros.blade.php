@@ -16,7 +16,7 @@
         @if ($errors -> any())
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             @foreach($errors->all() as $error)
-                <li>{{ $errors }}</li>
+                <li>{{ $error }}</li>
             @endforeach
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -86,21 +86,19 @@
 
         <form action="{{url('maestros')}}" method="GET">
             <div class="input-group mb-3" class="search">
-                 <input type="text" name="search" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                 <input title="Buscar" type="text" name="search" class="form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                 </div>
            <div>
             
             <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
+            <button title="Añadir Maestro" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus"></i></button>
+            <a title="Asignar Clase" href="{{url('clases_maestros')}}" class="btn btn small btn-success"><i class="bi bi-music-note-list"></i></i></i></a>                            
+
         </form>
          </div>
-         <!-- Boton agregar (modal) -->
-         <div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus"></i></button>
-        </div>
-         </div>
-
-       </div>
+         
+       
 </div>         
 <div class="container-flud px-4 px-lg-5">
     <div class="row">
@@ -135,12 +133,12 @@
                         <td class="text-center">{{$maestro->telefono}} </td>
                         <td class="text-center">{{$maestro->email}} </td>
                         <td>
-                            <a href="{{url('maestros/'.$maestro->id.'/editViews.maestrosEdit')}}" class="btn btn small btn-warning"><i class="bi bi-pen-fill"></i></a>
+                            <a title="Editar" href="{{url('maestros/'.$maestro->id.'/editViews.maestrosEdit')}}" class="btn btn small btn-warning"><i class="bi bi-pen-fill"></i></a>
                         </td>
                             
                         <td>   
                                 <form action="{{url('maestros' .$maestro->id)}}" method="POST"> 
-                                    <button class="btn btn small btn-danger" onclick="return confirm('{{ __('Apoco si?') }}')">
+                                    <button title="Eliminar" class="btn btn small btn-danger" onclick="return confirm('{{ __('Apoco si?') }}')">
                                         {{ __() }}<i class="bi bi-trash-fill"></i></button>                                   @method('DELETE')
                                    @csrf
                                </form>

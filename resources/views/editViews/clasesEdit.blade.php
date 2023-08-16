@@ -16,31 +16,35 @@
             @csrf
             <div class="row"> 
                 <div class="col-3"> </div>
-                <div class="col-6">        
+                <div class="col-6">
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombre" value="{{$clase->nombre}}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="formGroupExampleInput2" class="form-label">Maestro</label>
-                        <input type="text" class="form-control" name="maestro" value="{{$clase->maestro}}" required>
+                        <label for="formGroupExampleInput2" class="form-label">Día</label>
+                        <select class="form-select" aria-label="Default select example" name="dia">
+                            <option>{{$clase->dia}}</option>
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miércoles">Miércoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                          </select>
                     </div>
     
                     <div class="mb-3">
-                        <label for="formGroupExampleInput2" class="form-label">Alumnos</label>
-                        <input type="text" class="form-control" name="alumnos" value="" required>
-                    </div>
-    
-    
-                    <div class="mb-3">
-                        <label for="formGroupExampleInput2" class="form-label">Instrumentos</label>
-                        <input type="integer" class="form-control" name="instrumentos">
-                    </div>
-    
-                    <div class="mb-3">
-                        <label for="formGroupExampleInput2" class="form-label">Horario</label>
-                        <input type="text" class="form-control" name="horario">
-                    </div>
+                        <label for="formGroupExampleInput2" class="form-label">Hora</label>
+                        <select class="form-select" aria-label="Default select example" name="hora">
+                            <option>{{$clase->hora}}</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                          </select>
                         
                         <div class="text-center">
                             <a href="{{url('clases')}}" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i></a>

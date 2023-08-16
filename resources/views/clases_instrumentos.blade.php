@@ -22,18 +22,18 @@
               
 
         <div class="col-4" >
-            <h4 class="text-center">Asignar Clase a Alumno</h4>
-            <form action="{{url('clases_alumnos')}}" method="POST" enctype="multipart/form-data">                
+            <h4 class="text-center">Asignar Instrumento a clase</h4>
+            <form action="{{url('clases_instrumentos')}}" method="POST" enctype="multipart/form-data">                
                 @csrf
 
                 <div class="col-3"> </div>
                 
             <div>
-                <label for="formGroupExampleInput" class="form-label">Alumno</label>
+                <label for="formGroupExampleInput" class="form-label">Instrumento</label>
                 <select name="id_alumno" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected disabled>--Seleccionar alumno--</option>
-                    @foreach($alumnos as $alumno)
-                    <option value="{{$alumno->id}}"> {{$alumno->nombre.' '.$alumno->apellidoPaterno. ' '.$alumno->apellidoMaterno}} </option>
+                    <option selected disabled>--Seleccionar instrumento--</option>
+                    @foreach($instrumentos as $instrumento)
+                    <option value="{{$instrumento->id}}"> {{$instrumento->nombreInstrumento}} </option>
                     @endforeach
                 </select>
             </div>
@@ -49,7 +49,7 @@
             </div>
 
             <div class="text-center">
-                <a href="{{url('alumnos')}}" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i></a>
+                <a href="{{url('instrumentos')}}" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i></a>
                 <button type="submit" class="btn btn-success"><i class="bi bi-person-check-fill"></i></button>
             </div>
             </form>
@@ -72,14 +72,13 @@
                        <div>
                         
                         <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
-                        <a title="Descargar" href="{{url('alumnospdf')}}" class="btn btn-primary"><i class="bi bi-file-earmark-arrow-down"></i></a>
                     </form>
                      </div>
 
                 <thead class="table table-dark col-xs">
                   <tr>
                     <th scope="col" class="text-center">ID</th>
-                    <th scope="col" class="text-center">Alumno</th>
+                    <th scope="col" class="text-center">Instrumento</th>
                     <th scope="col" class="text-center">Clase</th>
                   </tr>
                 </thead>
@@ -87,9 +86,9 @@
                 <tbody>
                     
                     <tr>
-                       @foreach($claseAlumnos as $item)
+                       @foreach($claseInst as $item)
                         <td class="text-center">{{$item->id}}</td>
-                        <td class="text-center">{{$item->alumno->nombre." ".$item->alumno->apellidoPaterno." ".$item->alumno->apellidoMaterno}}</td>
+                        <td class="text-center">{{$item->instrumento->nombreInstrumento}}</td>
                         <td class="text-center">{{$item->clase->nombre}}</td>                        
                     </tr>
                     @endforeach
